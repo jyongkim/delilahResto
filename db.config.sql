@@ -1,120 +1,145 @@
+DROP DATABASE IF EXISTS Delilah;
 CREATE DATABASE IF NOT EXISTS Delilah;
 USE Delilah;
 
-CREATE TABLE IF NOT EXISTS Users (
-    id_user int auto_increment,
-    name varchar(50) not null,
-    user varchar(20) not null,
-    email varchar(100) not null,
-    pass varchar(20) not null,
-    phone int(10) not null,
-    address varchar(200) not null,
-    date datetime default current_timestamp,
-    admin boolean default false,
-    primary key(id_user),
-    unique key(user),
-    unique key(email)
-);
-
-CREATE TABLE IF NOT EXISTS products (
-	id_product int auto_increment,
-    name varchar(50) not null,
-    detail varchar(200),
-    price decimal(8,2) not null,
-    stock int,
-    img varchar(200),
-    date datetime default current_timestamp,
-    primary key(id_product),
-    unique key(name)
-);
-
-CREATE TABLE IF NOT EXISTS states (
-	id_state int auto_increment,
-    detail varchar(50),
-    primary key(id_state),
-    unique key(detail)
-);
-
-CREATE TABLE IF NOT EXISTS pay_method (
-	id_method int auto_increment,
-    detail varchar(50),
-    primary key(id_method),
-    unique key(detail)
-);
-CREATE TABLE IF NOT EXISTS cart (
-    id_cart int auto_increment,
-    id_user int not null,
-    id_product int not null,
-    quantity int,
-    primary key(id_cart),
-    unique key(id_user, id_product),
-    foreign key(id_user) references Users(id_user),
-    foreign key(id_product) references products(id_product)
-);
-CREATE TABLE IF NOT EXISTS orders (
-	id_order int auto_increment,
-    id_user int not null,
-    id_state int not null, 
-    id_method int,
-    date datetime default current_timestamp,
-    price decimal(8,2) not null,
-    pago boolean default false,
-    primary key(id_order),
-    foreign key(id_user) references Users(id_user),
-    foreign key(id_state) references states(id_state),
-    foreign key(id_method) references pay_method(id_method)
-);
-CREATE TABLE IF NOT EXISTS orders_detail (
-	id_detail int auto_increment,
-    id_order int,
-    id_product int,
-    cantidad int,
-    price decimal(8,2) not null,
-    primary key(id_detail),
-    unique key(id_order, id_product),
-    foreign key(id_order) references orders(id_order),
-    foreign key(id_product) references products(id_product)
-);
-
-/*
-DDL (definición de datos: columnas): create, drop y alter (table) [add, drop y modify].
-DML (manipulación de datos: filas): insert (into), delete, update [set] y select.
-DCL (control de datos: users de la base de datos): grant, revoke, flush privileges.
-TCL (transacción de datos): describe, show, use, entre otros...
-*/
-
-DESCRIBE Users;
-INSERT INTO Users(user, email, pass, admin)
-VALUES
-	("freddi_mercury", "freddimercury@gmail.com", "queen", false),
-	("jonathan_kim", "jonathankim@gmail.com", "jonathan", true);
-
-SELECT * FROM Users;
-UPDATE Users SET name = "Farrokh Bulsara" WHERE id_user = 1;
-UPDATE Users SET name = "Jonathan Kim" WHERE email = "jonathankim@gmail.com";
-DELETE FROM Users WHERE id_user = 2;
-INSERT INTO Users(user, email, pass, admin)
-VALUES
-	("cristian_racedo2", "cristianracedo2@gmail.com", "vtodyosm", false),
-    ("jonathan_kim2", "jonathankim2@gmail.com", "jonathan2", true);
+/* Data definition language */
+    CREATE TABLE IF NOT EXISTS Users (
+        id_user INT AUTO_INCREMENT,
+        name VARCHAR(50) NOT NULL,
+        user VARCHAR(20) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        pass VARCHAR(20) NOT NULL,
+        phone int(10) NOT NULL,
+        address VARCHAR(200) NOT NULL,
+        date DATETIME DEFAULT CURRENT_TIMESTAMP,
+        admin BOOLEAN DEFAULT FALSE,
+        PRIMARY KEY(id_user),
+        UNIQUE KEY(user),
+        UNIQUE KEY(email)
+    );
+    CREATE TABLE IF NOT EXISTS products (
+        id_product INT AUTO_INCREMENT,
+        name VARCHAR(50) NOT NULL,
+        detail VARCHAR(200),
+        price decimal(8,2) NOT NULL,
+        stock INT,
+        img VARCHAR(200),
+        date DATETIME DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY(id_product),
+        UNIQUE KEY(name)
+    );
+    CREATE TABLE IF NOT EXISTS states (
+        id_state INT AUTO_INCREMENT,
+        detail VARCHAR(50),
+        PRIMARY KEY(id_state),
+        UNIQUE KEY(detail)
+    );
+    CREATE TABLE IF NOT EXISTS pay_method (
+        id_method INT AUTO_INCREMENT,
+        detail VARCHAR(50),
+        PRIMARY KEY(id_method),
+        UNIQUE KEY(detail)
+    );
+    CREATE TABLE IF NOT EXISTS cart (
+        id_cart INT AUTO_INCREMENT,
+        id_user INT NOT NULL,
+        id_product INT NOT NULL,
+        quantity INT,
+        price DECIMAL(10,2),
+        PRIMARY KEY(id_cart),
+        UNIQUE KEY(id_user, id_product),
+        FOREIGN KEY(id_user) REFERENCES Users(id_user),
+        FOREIGN KEY(id_product) REFERENCES products(id_product)
+    );
+    CREATE TABLE IF NOT EXISTS orders (
+        id_order INT AUTO_INCREMENT,
+        id_user INT NOT NULL,
+        id_state INT NOT NULL DEFAULT 1, 
+        id_method INT NOT NULL DEFAULT 1,
+        date DATETIME DEFAULT CURRENT_TIMESTAMP,
+        price decimal(8,2) NOT NULL,
+        pago BOOLEAN DEFAULT FALSE,
+        PRIMARY KEY(id_order),
+        FOREIGN KEY(id_user) REFERENCES Users(id_user),
+        FOREIGN KEY(id_state) REFERENCES states(id_state),
+        FOREIGN KEY(id_method) REFERENCES pay_method(id_method)
+    );
+    CREATE TABLE IF NOT EXISTS orders_detail (
+        id_detail INT AUTO_INCREMENT,
+        id_order INT,
+        id_product INT,
+        quantity INT,
+        price decimal(8,2) NOT NULL,
+        PRIMARY KEY(id_detail),
+        UNIQUE KEY(id_order, id_product),
+        FOREIGN KEY(id_order) REFERENCES orders(id_order),
+        FOREIGN KEY(id_product) REFERENCES products(id_product)
+    );
+/* Data manipulation language */
+	-- Estados de orden.
+    INSERT INTO states (detail)
+	VALUES ('NUEVO'), ('CONFIRMADO'), ('PREPARANDO'), ('ENVIADO'), ('CANCELADO'), ('ENTREGADO');
+	-- Metodos de pago.
+	INSERT INTO pay_method(detail)
+	VALUES ('EFECTIVO'), ('CREDITO'), ('DEBITO'), ('TRANSF.B'), ('VIRTUAL');
+	-- Registro usuarios.
+    INSERT INTO Users(user, name, email, pass, admin)
+	VALUES
+		("freddi_mercury", "Farrokh Bulsara", "freddimercury@gmail.com", "queen", false),
+		("jonathan_kim","Jonathan Kim", "jonathankim@gmail.com", "jonathan", true),
+		("kurt_cobain", "Kurt Cobain", "kurtcobain@gmail.com", "nirvana1", false),
+		("krist_novoselic","Krist Novoselic", "krist@gmail.com", "nirvana2", true),
+		("dave_grhol", "Dave Grhol", "davegrhol@gmail.com", "nirvana3", false),
+		("dark_kim","Dark Kim", "darkkim@gmail.com", "dark", true);
+	-- Registro de productos.
+    INSERT INTO products(name, stock, price, img)
+    VALUES
+        ('Hamburgesa clásica', 1, 250, 'https://image.freepik.com/free-photo/front-view-burger-fries-plate_23-2148784444.jpg'),
+		('Bagel de salmón', 1, 420, 'https://image.freepik.com/free-photo/smoked-salmon-bagel-sandwich_1147-546.jpg'),
+		('Ensalada veggie', 0, 340, 'https://image.freepik.com/free-photo/salad-white-plate_1303-9609.jpg'),
+		('Focaccia', 1, 300, 'https://image.freepik.com/free-photo/italian-focaccia-with-tomatoes-peppers-onions_2829-4883.jpg'),
+		('Sandwich focaccia', 0, 440, 'https://image.freepik.com/free-photo/arabic-kebab-sandwich-with-focaccia-bread_23-2148651091.jpg'),
+		('Ensalada Caesar', 0, 320, 'https://image.freepik.com/free-photo/chicken-caesar-salad-blue-picnic-table_1147-551.jpg'),
+		('Hamburguesa de lentejas', 1, 380, 'https://as2.ftcdn.net/jpg/02/10/01/09/500_F_210010913_kSQ6PbyL5EFVaZqc4gFbN4AgnaUquBjV.jpg'),
+		('Ensalada de atún', 0, 305, 'https://img.freepik.com/free-photo/seared-tuna-steak-with-green-beans-cherry-tomatoes_1147-575.jpg?size=626&ext=jpg'),
+		('Tarta de jamón y queso', 1, 380, 'https://img.freepik.com/free-photo/woman-with-tattoos-fingers-breaks-up-ready-eat-croissant-with-melted-cheese-ham_346278-112.jpg?size=626&ext=jpg'),
+		('Tarta integral de verdura', 0, 380, 'https://img.freepik.com/free-photo/delicious-pumpkin-pie-top-view_23-2148656363.jpg?size=626&ext=jpg'),
+		('Empanada de jamón y queso', 1, 100, 'https://img.freepik.com/free-photo/baked-pies-dish_1205-174.jpg?size=626&ext=jpg'),
+		('Empanada de carne', 1, 100, 'https://img.freepik.com/free-photo/chicken-pie-kurnik-that-is-beautifully-decorated-table_1150-23098.jpg?size=626&ext=jpg'),
+		('Empanada de verdura', 1, 100, 'https://img.freepik.com/free-photo/chicken-pie-kurnik-that-is-beautifully-decorated-table_1150-23094.jpg?size=338&ext=jpg'),
+		('Wrap de verdura', 0, 210, 'https://img.freepik.com/free-photo/tortilla-with-added-ink-cuttlefish-with-chicken-vegetables_2829-10963.jpg?size=626&ext=jpg'),
+		('Wrap de pollo y verdura', 0, 270, 'https://t3.ftcdn.net/jpg/00/84/80/64/240_F_84806475_KlovxBiUwxR74oohIASmlAR0JdGLAZIK.jpg'),
+		('Wrap integral de atún', 0, 330, 'https://img.freepik.com/free-photo/pita-stuffed-with-chicken-peppers_2829-17827.jpg?size=626&ext=jpg');
+        -- Carritos de compras.
+        INSERT INTO cart(id_user, id_product, quantity, price)
+        VALUES
+            (1,2,9,310), (1,4,5,340), (1,3,5,420), (1,5,0,300),
+            (2,2,6,310), (2,4,7,340), (2,9,4,305),
+            (3,7,3,320), (3,15,2,210),
+            (4,3,1,420), (4,6,6,440), (4,5,2,300),
+            (5,5,10,300),(5,6,7,440), (5,7,3,320), (5,9,5,305);
+    -- Actualizacion de precios.
+	UPDATE cart AS c 
+	SET price = ( SELECT price FROM products AS p WHERE p.id_product = c.id_product ) 
+    WHERE price IS NULL;
+	-- Actualizacion de detalles.
+    INSERT INTO orders_detail(id_product, quantity, price) 
+    SELECT id_product, quantity, price FROM cart;
+    -- Creación de órdenes de compra.
+    INSERT INTO orders(id_user,id_state, id_method, price)
+    SELECT id_user, 1, 1, SUM(quantity * price) FROM cart
+    WHERE cart.id_user = 1;
+    SELECT * FROM orders;
+/*DML - Consulta de datos ingresados. */		
+	SELECT * FROM users;
+	SELECT * FROM products;
+	SELECT * FROM cart;
+	SELECT * FROM orders;
+	SELECT * FROM orders_detail;
     
-TRUNCATE Users;
-
-DESCRIBE products;
-INSERT INTO products(name, price, stock)
-VALUES
-	("Hamburguesa clásica","350","563"),
-    ("Sandwich veggie","310","321");
-
-SELECT * FROM products;
-
-ALTER TABLE orders_detail
-MODIFY price DECIMAL (8,2);
-
-/* CASE siempre termina con END */
-UPDATE products
-	SET price =
-    CASE
-		WHEN name LIKE "Hamb%" THEN 350
-        WHEN name LIKE "Sand%" THEN 310
-	END
+    INSERT INTO orders_detail(id_product, quantity, price) 
+    SELECT id_product, quantity, price 
+    FROM cart where id_user = 1; 
+    INSERT INTO orders(id_user, price) 
+    VALUES (1, (SELECT SUM(quantity * price) 
+    FROM cart WHERE id_user = 1));

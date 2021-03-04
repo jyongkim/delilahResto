@@ -1,12 +1,11 @@
 const express = require('express')
-
-const userRouter = express.Router()
+const router = express.Router()
 const userController = require('../controller/user')
-const { authToken } = require('../middleware/authentication')
-
-userRouter.get( '/', authToken , userController.findAll )
-userRouter.get( '/:id', authToken , userController.findById )
-userRouter.delete( '/:id', authToken, userController.delete )
-userRouter.post( '/', authToken, userController.create )
-// userRouter.put('/:id', userController.update)
-module.exports = userRouter
+const { authToken, adminAuth } = require('../middleware/auth')
+/* User routes */
+    router.post   (  '/',     authToken,  userController.create  ) // C
+    router.get    (  '/',     adminAuth,  userController.list    ) // R
+    router.get    (  '/:id',  authToken,  userController.find    ) // R
+    router.put    (  '/:id',  authToken,  userController.update  ) // U
+    router.delete (  '/:id',  authToken,  userController.delete  ) // D
+module.exports = router
