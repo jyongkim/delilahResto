@@ -1,0 +1,851 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: delilah_resto
+  contact: {}
+host: localhost:5000
+basePath: /
+securityDefinitions: {}
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /login:
+    post:
+      summary: login
+      tags:
+      - Auth
+      operationId: login
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: user
+        in: formData
+        required: true
+        type: string
+      - name: pass
+        in: formData
+        required: true
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /signup:
+    post:
+      summary: signup
+      tags:
+      - Auth
+      operationId: signup
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: name
+        in: formData
+        required: true
+        type: string
+      - name: user
+        in: formData
+        required: true
+        type: string
+      - name: pass
+        in: formData
+        required: true
+        type: string
+      - name: email
+        in: formData
+        required: true
+        type: string
+      - name: phone
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: address
+        in: formData
+        required: true
+        type: string
+      - name: admin
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /users:
+    post:
+      summary: create
+      tags:
+      - Users
+      operationId: create
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: name
+        in: formData
+        required: true
+        type: string
+      - name: user
+        in: formData
+        required: true
+        type: string
+      - name: pass
+        in: formData
+        required: true
+        type: string
+      - name: email
+        in: formData
+        required: true
+        type: string
+      - name: admin
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: address
+        in: formData
+        required: true
+        type: string
+      - name: phone
+        in: formData
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: ''
+          headers: {}
+    get:
+      summary: list
+      tags:
+      - Users
+      operationId: list
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /users/id_user:
+    get:
+      summary: find
+      tags:
+      - Users
+      operationId: find
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+    put:
+      summary: update
+      tags:
+      - Users
+      operationId: update
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: name
+        in: formData
+        required: true
+        type: string
+      - name: user
+        in: formData
+        required: true
+        type: string
+      - name: email
+        in: formData
+        required: true
+        type: string
+      - name: pass
+        in: formData
+        required: true
+        type: string
+      - name: adm
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: address
+        in: formData
+        required: true
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+    delete:
+      description: Eliminar Producto
+      summary: delete
+      tags:
+      - Users
+      operationId: delete
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /products:
+    post:
+      summary: create
+      tags:
+      - Products
+      operationId: Postcreate
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: name
+        in: formData
+        required: true
+        type: string
+      - name: description
+        in: formData
+        required: true
+        type: string
+      - name: price
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: picture
+        in: formData
+        required: true
+        type: string
+      - name: stock
+        in: formData
+        required: true
+        type: boolean
+      responses:
+        200:
+          description: ''
+          headers: {}
+    get:
+      summary: list
+      tags:
+      - Products
+      operationId: Getlist
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /products/id_product:
+    get:
+      description: Usuario especifico
+      summary: find
+      tags:
+      - Products
+      operationId: Getfind
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+    put:
+      summary: update
+      tags:
+      - Products
+      operationId: Putupdate
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: name
+        in: formData
+        required: true
+        type: string
+      - name: detail
+        in: formData
+        required: true
+        type: string
+      - name: price
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: img
+        in: formData
+        required: true
+        type: string
+      - name: stock
+        in: formData
+        required: true
+        type: boolean
+      responses:
+        200:
+          description: ''
+          headers: {}
+    delete:
+      summary: delete
+      tags:
+      - Products
+      operationId: Deletedelete
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /cart:
+    post:
+      summary: create
+      tags:
+      - Cart
+      operationId: Postcreate1
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: id_user
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: id_product
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: quantity
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: ''
+          headers: {}
+    get:
+      description: localhost:5000/cart/
+      summary: list
+      tags:
+      - Cart
+      operationId: Getlist1
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /cart/id_user:
+    get:
+      summary: find
+      tags:
+      - Cart
+      operationId: Getfind1
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+    put:
+      summary: update
+      tags:
+      - Cart
+      operationId: Putupdate1
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: id_product
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      - name: quantity
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: ''
+          headers: {}
+    delete:
+      summary: delete
+      tags:
+      - Cart
+      operationId: Deletedelete1
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: id_product
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /orders/id_user:
+    post:
+      summary: create
+      tags:
+      - Orders
+      operationId: Postcreate12
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: id_method
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: ''
+          headers: {}
+    get:
+      summary: find
+      tags:
+      - Orders
+      operationId: Getfind12
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /orders:
+    get:
+      description: localhost:5000/orders
+      summary: list
+      tags:
+      - Orders
+      operationId: Getlist12
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /orders/id_order:
+    put:
+      summary: update
+      tags:
+      - Orders
+      operationId: Putupdate12
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      - name: id_state
+        in: formData
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: ''
+          headers: {}
+    delete:
+      summary: delete
+      tags:
+      - Orders
+      operationId: Deletedelete12
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /:
+    get:
+      summary: delilah
+      operationId: delilah
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /api-docs:
+    get:
+      summary: api-docs
+      operationId: api-docs
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Authorization
+        in: header
+        required: false
+        default: Bearer {token}
+        type: string
+      responses:
+        200:
+          description: ''
+          headers: {}
+definitions:
+  user_create:
+    title: user_create
+    description: ''
+    type: object
+    properties:
+      name:
+        example: 'name: jonathan kim'
+        type: string
+      user:
+        example: 'user: jonathan_kim'
+        type: string
+      email:
+        type: string
+      pass:
+        example: jonathan
+        type: string
+      phone:
+        type: integer
+        format: int32
+      address:
+        type: string
+      admin:
+        example: false
+        type: boolean
+        default: 'false'
+    required:
+    - name
+    - user
+    - email
+    - pass
+    - phone
+    - address
+    - admin
+  product_create:
+    title: product_create
+    description: ''
+    type: object
+    properties:
+      name:
+        example: 'name: sushi'
+        type: string
+      detail:
+        example: 'detail: maki rolls'
+        type: string
+      price:
+        type: integer
+        format: int32
+      stock:
+        example: true
+        type: boolean
+        default: 'true'
+      img:
+        type: string
+    required:
+    - name
+    - detail
+    - price
+    - stock
+    - img
+  cart_create:
+    title: cart_create
+    description: ''
+    type: object
+    properties:
+      id_product:
+        type: integer
+        format: int32
+      quantity:
+        type: integer
+        format: int32
+    required:
+    - id_product
+    - quantity
+  order_create:
+    title: order_create
+    description: ''
+    type: object
+    properties:
+      id_product:
+        type: integer
+        format: int32
+      quantity:
+        type: integer
+        format: int32
+      price:
+        type: integer
+        format: int32
+    required:
+    - id_product
+    - quantity
+    - price
+  user_update:
+    title: user_update
+    description: ''
+    type: object
+    properties:
+      name:
+        example: 'name: jonathan kim'
+        type: string
+      user:
+        example: 'user: jonathan_kim'
+        type: string
+      email:
+        type: string
+      pass:
+        example: jonathan
+        type: string
+      phone:
+        type: integer
+        format: int32
+      address:
+        type: string
+      admin:
+        example: false
+        type: boolean
+        default: 'false'
+    required:
+    - name
+    - user
+    - email
+    - pass
+    - phone
+    - address
+    - admin
+  product_update:
+    title: product_update
+    description: ''
+    type: object
+    properties:
+      name:
+        example: 'name: sushi'
+        type: string
+      detail:
+        example: 'detail: maki rolls'
+        type: string
+      price:
+        type: integer
+        format: int32
+      stock:
+        example: true
+        type: boolean
+        default: 'true'
+      img:
+        type: string
+    required:
+    - name
+    - detail
+    - price
+    - stock
+    - img
+  cart_update:
+    title: cart_update
+    description: ''
+    type: object
+    properties:
+      id_product:
+        type: integer
+        format: int32
+      quantity:
+        type: integer
+        format: int32
+    required:
+    - id_product
+    - quantity
+  order_update:
+    title: order_update
+    description: ''
+    type: object
+    properties:
+      id_product:
+        type: integer
+        format: int32
+      quantity:
+        type: integer
+        format: int32
+      price:
+        type: integer
+        format: int32
+      id_state:
+        type: integer
+        format: int32
+    required:
+    - id_product
+    - quantity
+    - price
+    - id_state
+tags:
+- name: Auth
+- name: Users
+- name: Products
+- name: Cart
+- name: Orders
+  description: ''

@@ -1,0 +1,904 @@
+{
+	"info": {
+		"_postman_id": "4594e74f-afdb-4ca8-bf6c-767173b435df",
+		"name": "delilah_resto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "LogIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user",
+									"value": "freddi_mercury",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "pass",
+									"value": "queen",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user",
+									"value": "jonathan_kim",
+									"type": "text"
+								},
+								{
+									"key": "pass",
+									"value": "jonathan",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Edward Elric",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "FullMetal",
+									"type": "text"
+								},
+								{
+									"key": "pass",
+									"value": "Alchemist",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "edward@fma.brotherhood.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "1376426312",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "resembool",
+									"type": "text"
+								},
+								{
+									"key": "admin",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Add New [admin]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Alphonse Elric",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "Alchemist",
+									"type": "text"
+								},
+								{
+									"key": "pass",
+									"value": "armor",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "al@fma.brotherhood.com",
+									"type": "text"
+								},
+								{
+									"key": "admin",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "resembool",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "4191707753",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All [admin]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find (:id / username / email)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:5000/users/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"id_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit (:id / username / email)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Delilah Resto Manager",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin@delilah_resto.com.ar",
+									"type": "text"
+								},
+								{
+									"key": "pass",
+									"value": "root",
+									"type": "text"
+								},
+								{
+									"key": "adm",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Delilah Street 1991",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/users/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"id_user"
+							],
+							"query": [
+								{
+									"key": "fullname",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove (:id / username)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/users/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"id_user"
+							]
+						},
+						"description": "Eliminar Producto"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add New [admin]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "saikano",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "24 rolls de sushi",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "590",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"value": "https://img.com",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/products",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:5000/products",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search (:id / prod)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:5000/products/id_product",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"id_product"
+							]
+						},
+						"description": "Usuario especifico"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit (:id / prod)[admin]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Hamburguesa con Queso",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "Hamburguesa de carne vacuna condimentada con salsa ketchup, cebolla y el mejor cheddar",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "350",
+									"type": "text"
+								},
+								{
+									"key": "img",
+									"value": "https://i.imgur.com/KaGNegD.png",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/products/id_product",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"id_product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove (:id / prod)[admin]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/products/id_product",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								"id_product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Add Product (:id / +prod)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_user",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "id_product",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/cart/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Cart [admin]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"cart"
+							]
+						},
+						"description": "localhost:5000/cart/"
+					},
+					"response": []
+				},
+				{
+					"name": "User Cart (:id / username)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/cart/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"cart",
+								"id_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Cart (:id / +prod)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_product",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/cart/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"cart",
+								"id_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rem Product (:id / +prod)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_product",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/cart/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"cart",
+								"id_user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order ( +cart)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_method",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/orders/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders",
+								"id_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All [admin]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders"
+							]
+						},
+						"description": "localhost:5000/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "User Order (:id)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/orders/id_user",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders",
+								"id_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order (:id +state)[admin]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_state",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/orders/id_order",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders",
+								"id_order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order (:id)[admin]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjIsIm5hbWUiOiJKb25hdGhhbiBLaW0iLCJ1c2VyIjoiam9uYXRoYW5fa2ltIiwiZW1haWwiOiJqb25hdGhhbmtpbUBnbWFpbC5jb20iLCJwYXNzIjoiam9uYXRoYW4iLCJwaG9uZSI6MCwiYWRkcmVzcyI6IiIsImRhdGUiOiIyMDIxLTAzLTE0VDA1OjMwOjU0LjAwMFoiLCJhZG1pbiI6MX1dLCJpYXQiOjE2MTU4MjY1ODYsImV4cCI6MTYxNTkxMjk4Nn0.AAfXkpcrkWDSCOgRmVgZc0cwTjmWUxg0omBMyADDIaU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/orders/id_order",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders",
+								"id_order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delilah EndPoint",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOlt7ImlkX3VzZXIiOjMsIm5hbWUiOiJjMjE1NzE0biIsInVzZXIiOiJjMjE1NzE0biIsImVtYWlsIjoiY3Jpc3RpYW5yYWNlZG8yQGdtYWlsLmNvbSIsInBhc3MiOiJyb290IiwicGhvbmUiOjAsImFkZHJlc3MiOiIiLCJkYXRlIjoiMjAyMS0wMy0wN1QxNjoyOToxNy4wMDBaIiwiYWRtaW4iOjF9XSwiaWF0IjoxNjE1MjY2MjM1LCJleHAiOjE2MTUzNTI2MzV9.ZK4G7T42geJ45DkyLgbMT0jssCtQx1_JES_dQ9muDk4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:5000",
+					"host": [
+						"localhost"
+					],
+					"port": "5000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Swagger",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api-docs",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

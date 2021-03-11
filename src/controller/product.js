@@ -1,14 +1,14 @@
-const Product = require('../model/product');
+const Product = require(`../model/product`);
 /*  NodeJS product handler methods */
     exports.create = function(req, res) {
         const newProduct = new Product(req.body);
         (req.body.constructor == Object && Object.keys(req.body).length == 0) ?
             res.status(400).send( {
                 error: true,
-                message: 'Debes completar todos los campos.'
+                message: `Debes completar todos los campos.`
             }   ) : Product.create(newProduct, (err, product) => err ? res.send(err) : res.json( {
                 error : false,
-                message : 'Producto cargado exitosamente.',
+                message : `Producto cargado exitosamente.`,
                 product : product
             }   )
     )   }
@@ -22,17 +22,17 @@ const Product = require('../model/product');
         (req.body.constructor == Object && Object.keys(req.body).length == 0) ?
             res.status(400).send( {
                 error: true,
-                message: 'Debes completar todos los campos.'
+                message: `Debes completar todos los campos.`
             }   ) : Product.update(req.params.id, req.body, (err, product) => err ? res.send(err) : res.json( {
                 error : false,
-                message : 'Producto actualizado exitosamente.',
+                message : `Producto actualizado exitosamente.`,
                 product : product
             }   )
     )   }
     exports.delete = function(req, res) {
         Product.delete(req.params.id, (err, product) => (err) ? res.send(err) : res.json(   {
             error:false, 
-            message:"El producto fue eliminado.",
+            message:`El producto fue eliminado.`,
             user: product
         }   )
     )   }

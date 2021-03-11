@@ -1,14 +1,14 @@
-const User = require('../model/user')
+const User = require(`../model/user`)
 /*  NodeJS user handler methods   */
     exports.create = function(req, res) {
         const newUser = new User(req.body);
         (req.body.constructor == Object && Object.keys(req.body) == 0) ?
             res.status(400).send(   {
                 error:true,
-                message:'Todos los campos son obligatorios.'
+                message:`Todos los campos son obligatorios.`
             }   ) : User.create(newUser, (err, user) => err ? res.send(err) : res.json( {
                 error:false,
-                message:'Usuario agregado con éxito.',
+                message:`Usuario agregado con éxito.`,
                 data: user
             }   )
     )   }
@@ -22,16 +22,16 @@ const User = require('../model/user')
         (req.body.constructor == Object && Object.keys(req.body).length == 0) ?
             res.status(400).send(   {
                 error: true,
-                message: 'Debes completar todos los campos.'
+                message: `Debes completar todos los campos.`
             }   ) : User.update(req.params.id, new User(req.body), (err, user) => (err) ? res.send(err): res.json( {   
-                message: "Los datos fueron actualizados.",
+                message: `Los datos fueron actualizados.`,
                 user: user   
             }  )
     )   }
     exports.delete = function(req, res) {
         User.delete(req.params.id, (err, user) => (err) ? res.send(err) : res.json(   {
             error:false, 
-            message:"El usuario fue eliminado.",
+            message:`El usuario fue eliminado.`,
             user: user
         }   )
     )   }

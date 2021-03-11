@@ -1,9 +1,9 @@
-const Order = require('../model/order')
+const Order = require(`../model/order`)
 /*  NodeJS orders handler methods */
     exports.create = function (req, res) {
-        Order.create( req.params.id, req.params.pay, req.body, (err, newOrder) => (err) ? res.send(err) : res.send( {
-            message: 'La orden fue cargada con éxito.',
-            descripton: newOrder
+        Order.create( req.params.id, req.body.id_method, (err, newOrder) => (err) ? res.send(err) : res.send( {
+            message: `La orden fue cargada con éxito.`,
+            description: newOrder
         }   )
     )   }
     exports.list = function (req, res) {
@@ -13,12 +13,12 @@ const Order = require('../model/order')
         Order.find( req.params.id, (err, order) => (err) ? res.send(err) : res.send(order)
     )   }
     exports.update = function (req, res){
-        const state = req.body.id_state;
-        Order.update(req.params.id, "id_state ="+state, (err, order) => (err) ? res.send(err) : err.send(order))
+        Order.update(req.params.id, req.body.id_state, (err, order) => (err) ? res.send(err) : res.send(order))
     }
     exports.delete = function(req, res){
-        Order.delete(req.body, (err, order) => (err) ? res.send(err) : err.send(    {
+        Order.delete(req.params.id, (err, order) => (err) ? res.send(err) : res.send( {
             error: false,
-            message: 'La órden ha sido eliminada exitosamente.'
+            message: `La órden ha sido eliminada exitosamente.`,
+            description: order
         }   )
     )   }
