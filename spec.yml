@@ -1,0 +1,422 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Sample Application Flow OAuth2 Project
+  description: This is an example of using OAuth2 Application Flow in a specification to describe security to your API.
+
+ 
+# Under securityDefinitions we declare which security schemes can be used.
+# These definitions do not affect to the operations but can be applied
+# using the 'security' key at the global level or the operation level.
+# In this sample we'll see how to apply the security definition globally
+# and override it at the operation level.
+#
+# Note that for Application Flow you must provide the Token URL.
+securityDefinitions:
+  application:
+    type: oauth2
+    # This should be updated to the Token URL of your OAuth provider.
+    tokenUrl: http://login.com/oauth/token
+    flow: application
+    scopes:
+      write: allows modifying resources
+      read: allows reading resources
+
+openapi: '3.0.2'
+info:
+  title: Delilah
+  version: '1.0'
+servers:
+  - url: https://jonathankim.com.ar/delilahResto
+
+tags: [
+  {
+    name: auth,
+    description: delilah user authentication
+  },
+  {
+    name: users,
+    description: delilah user profile
+  },{
+    name: products,
+    description: delilah products selection
+  },
+  {
+    name: cart,
+    description: delilah shopping-cart for users
+  },
+  {
+    name: orders,
+    description: delilah user orders
+  },
+]
+paths:
+  /:
+    get:
+      tags: [auth]
+      summary: Start API Endpoint
+      responses:
+        '200':
+          description: Bienvenido a Delilah Resto
+      
+  /signup:
+    post:
+      tags: [auth]
+      summary: Creates a new user and generates access token
+      responses:
+        '200':
+          description: A successful response
+        '400':
+          description: User already exists
+    
+  /login:
+    post:
+      tags: [auth]
+      summary: Validates user data for Access
+      responses:
+        '200':
+          description: User Authenticated
+        '400':
+          description: Invalid User o Pass
+
+# USERS
+  /users:
+    post:
+      summary: Create a new user (admin)
+      tags: [users]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                name:
+                  type: string
+                email:
+                  type: string
+                pass:
+                  type: string
+                phone:
+                  type: integer
+                admin:
+                  type: boolean
+              required: ['true']
+              description: JWT validation token required
+      responses:
+        200:
+          description: User created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: User already exists
+
+    get:
+      summary: Get all users cart (admin rigths)
+      tags: [users]
+      responses:
+        200:
+          description: Users list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /users/{id}:
+    get:
+      summary: Get profile by id_user
+      tags: [users]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: User profile
+      responses:
+        200:
+          description: Access granted
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: Authorization Required
+
+    put:
+      summary: updates cart by id_user
+      tags: [users]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: id
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: no shopping-cart for this user
+
+    delete:
+      summary: delete user by id_user
+      tags: [users]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: User deleted
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: no shopping-cart for this user
+
+# PRODUCTS
+  /products:
+    post:
+      summary: Create a new product (admin)
+      tags: [products]
+      parameters:
+        - in: path
+          name: JWT token
+          schema:
+            type: string
+          required: true
+          description: JWT validation Token required
+      responses:
+        200:
+          description: product created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: product already exists
+
+    get:
+      summary: get all products cart (admin rigths)
+      tags: [products]
+      responses:
+        200:
+          description: list of shopping cart
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /products/{id}:
+    get:
+      summary: Get profile by id_product
+      tags: [products]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: id
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: no shopping-cart for this product
+
+    put:
+      summary: updates cart by id_product
+      tags: [products]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: id
+          content:
+              application/json:
+                schema:
+                  type: object
+        404:
+          description: no shopping-cart for this product
+
+# CART
+  /cart:
+    get:
+      summary: get all users cart (admin rigths)
+      tags: [cart]
+      responses:
+        200:
+          description: list of shopping cart
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /cart/{id}:
+    get:
+      summary: Get the cart by id_user
+      tags: [cart]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: id
+          content:
+              application/json:
+                schema:
+                  type: object
+        404:
+          description: no shopping-cart for this user
+
+    put:
+      summary: updates cart by id_user
+      tags: [cart]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: id
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: no shopping-cart for this user
+
+    delete:
+      summary: Get the cart by id_user
+      tags: [cart]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: product deleted
+          content:
+              application/json:
+                schema:
+                  type: object
+        404:
+          description: no shopping-cart for this user
+
+  /orders/:
+    post:
+      summary: Create a new order (admin)
+      tags: [orders]
+      parameters:
+        - in: path
+          name: JWT token
+          schema:
+            type: string
+          required: true
+          description: JWT validation Token required
+      responses:
+        200:
+          description: order created succesfully
+          content:
+              application/json:
+                schema:
+                  type: object
+        400:
+          description: order already exists
+
+  /orders:
+    get:
+      summary: get all orders cart (admin rigths)
+      tags: [orders]
+      responses:
+        200:
+          description: list of shopping cart
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /orders/{id}:
+    get:
+      summary: Get profile by id_order
+      tags: [orders]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: id
+          content:
+              application/json:
+                schema:
+                  type: object
+        404:
+          description: no shopping-cart for this order
+
+    put:
+      summary: updates cart by id_order
+      tags: [orders]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: id
+      responses:
+        200:
+          description: id
+          content:
+              application/json:
+                schema:
+                  type: object
+        404:
+          description: no shopping-cart for this order
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /jyongkim/delilahResto/1.0.0
+schemes:
+ - https

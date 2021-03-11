@@ -103,17 +103,37 @@ delilah.use( '/orders',    order   ) // Órdenes de compra.
      */ 
     /**
      * @swagger
-     * /users/:
+     * /users:
      *   post:
      *     summary: Create a new user (admin)
      *     tags: [users]
-     *     parameters:
-     *       - in: headers
-     *         name: authorization
-     *         schema:
-     *           type: string
+     *     requestBody:
+     *       content:
+     *         application/json:
+        *         schema:
+        *           type: object
+        *           properties:
+        *              user:
+        *                type: string
+        *              name:
+        *                  type: string
+        *              email:
+        *                  type: string
+        *              pass:
+        *                  type: string
+        *              phone:
+        *                  type: integer
+        *              admin:
+        *                  type: boolean
+        *              example:
+        *                  user: jonathan
+        *                  name: Jonathan Kim
+        *                  email: jonathan@gmail.com
+        *                  pass: 123456Hola
+        *                  phone: 1511111111
+        *                  admin: true
      *         required: true
-     *         description: JWT validation Token required
+     *         description: JWT validation token required
      *     responses:
      *       200:
      *         description: User created succesfully
@@ -128,11 +148,11 @@ delilah.use( '/orders',    order   ) // Órdenes de compra.
      * @swagger
      * /users:
      *   get:
-     *     summary: get all users cart (admin rigths)
+     *     summary: Get all users cart (admin rigths)
      *     tags: [users]
      *     responses:
      *       200:
-     *         description: Lista de Usuarios
+     *         description: Users list
      *         content:
      *           application/json:
      *             schema:
@@ -152,7 +172,7 @@ delilah.use( '/orders',    order   ) // Órdenes de compra.
      *         schema:
      *           type: string
      *         required: true
-     *         description: User Profile
+     *         description: User profile
      *     responses:
      *       200:
      *         description: Access granted
