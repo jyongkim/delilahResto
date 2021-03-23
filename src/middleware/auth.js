@@ -20,6 +20,17 @@ let log = []
             }   )
     }   )   }  
 /*  JWT validation access */
+    exports.auth = (req, res, next) =>{
+        const bearer = req.headers[`authorization`]
+        if(typeof bearer !== `undefined`) { 
+            const token   = bearer.split(` `)[1]; 
+            const decoded = jwt.verify(token, secret);
+            req.token     = token;
+            next()
+        } else {
+            accessDenied()
+        }
+    }
     exports.authToken = (req, res, next) => {
         const bearer = req.headers[`authorization`]
         if(typeof bearer !== `undefined`) { 
@@ -36,10 +47,7 @@ let log = []
                     message: `Acceso restringido, sólo administradores y propietarios.`
                 }   )
         } else {
-            res.json(   {
-                error: 403, 
-                message: `Acceso no autorizado. Debes iniciar sesión.`
-            }   ) 
+            accessDenied()
         }   }
     exports.adminAuth = (req, res, next) => {
         const bearer = req.headers[`authorization`]
@@ -57,8 +65,12 @@ let log = []
                     message: `Acceso restringido. Sólo pueden ingresar administradores.`
                 }   )
         } else {
-            res.json(   {
-                error: 403, 
-                message: `Acceso no autorizado. Debes iniciar sesión.`
-            }   ) 
+            accessDenied()
     }   }
+
+    accessDenied = () => {
+        res.json(   {
+            error: 403, 
+            message: `Acceso no autorizado. Debes iniciar sesión.`
+        }   ) 
+    }

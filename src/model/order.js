@@ -41,9 +41,8 @@ let dbConn = require(`../middleware/dbConn`);
             [ detail, id ], (err, res) => (err) ? result(err, null) : result(null, res)
     )   }
     Order.delete = (id, result) => {
-        dbConn.query(`DELETE od FROM orders_detail od 
-            JOIN orders o ON od.id_order = o.id_order 
-            WHERE o.id_order = ?`, 
+        dbConn.query(`DELETE FROM orders_detail WHERE id_order = ?`, id)
+        dbConn.query(`DELETE FROM orders WHERE id_order = ?`,
             id, (err, res) => err ? result(err,null) : result(null, res) 
     )   }
 module.exports = Order;

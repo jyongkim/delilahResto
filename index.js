@@ -181,14 +181,6 @@
                 "description": "",
                 "required": true,
                 "type": "string"
-            },
-            {
-                "name": "admin",
-                "in": "formData",
-                "description": "",
-                "required": true,
-                "type": "integer",
-                "format": "int32"
             }
             ],
             "responses": {
@@ -275,12 +267,18 @@
                     "type": "string"
                 },
                 {
+                    "name": "phone",
+                    "in" : "formData",
+                    "required": true,
+                    "type": number,
+                    "format":"int64"
+                },
+                {
                     "name": "admin",
                     "in": "formData",
                     "description": "",
                     "required": true,
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "boolean"
                 },
                 {
                     "name": "address",
@@ -289,14 +287,6 @@
                     "required": true,
                     "type": "string"
                 },
-                {
-                    "name": "phone",
-                    "in": "formData",
-                    "description": "",
-                    "required": true,
-                    "type": "integer",
-                    "format": "int64"
-                }
                 ],
                 "responses": {
                 "200": {
@@ -394,12 +384,19 @@
                     "type": "string"
                 },
                 {
-                    "name": "adm",
+                    "name": "phone",
                     "in": "formData",
                     "description": "",
                     "required": true,
                     "type": "integer",
-                    "format": "int32"
+                    "format": "int64"
+                },
+                {
+                    "name": "admin",
+                    "in": "formData",
+                    "description": "",
+                    "required": true,
+                    "type": "boolean"
                 },
                 {
                     "name": "address",
@@ -709,7 +706,9 @@
                 }
                 },
                 "deprecated": false
+            }
             },
+            "/cart/{id_user}": {
             "post": {
                 "tags": [
                 "Cart"
@@ -762,9 +761,7 @@
                 }
                 },
                 "deprecated": false
-            }
             },
-            "/cart/{id_user}": {
             "get": {
                 "tags": [
                 "Cart"
