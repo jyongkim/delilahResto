@@ -1,87 +1,44 @@
-commit 3ff09ed7a40bd3da8b96465cdae4a1b60fd2858f
+commit d508966b1e6be15f4cdef8e0d0f5fefa344b82bf
 Author: Jonathan Kim <jonathankim86@gmail.com>
 Date:   Tue Mar 23 16:12:41 2021 -0300
 
     Revisión del proyecto: modificación de órdenes y actualización de la documentación
 
-commit 8708b8460ba058cc142298693b348616b3b2bf5c
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Tue Mar 16 20:00:11 2021 -0300
-
-    ReadMe 4.0
-
-commit c05874e264e660f29cc989160b4a53c6c41b5f66
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Tue Mar 16 19:59:25 2021 -0300
-
-    ReadMe 3.0
-
-commit b7502518a77a20918ec9c61cb59af4eeab65d9e8
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Tue Mar 16 19:56:56 2021 -0300
-
-    Versión 1.4
-
-commit ce0c8ef999a7024715bea1b0ea6285c74aacf4a8
-Merge: 3fbc674 69f1b09
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Tue Mar 16 19:48:39 2021 -0300
-
-    ReadMe 2.0
-
-commit 3fbc674db623bc818e081a7b2c81de48fab59209
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Tue Mar 16 19:36:21 2021 -0300
-
-    Versión 1.3
-
-commit 69f1b09949bfc330295c8e94378446d813a95eed
-Author: Jonathan Kim <71949664+jyongkim@users.noreply.github.com>
-Date:   Tue Mar 16 16:50:25 2021 -0300
-
-    Update README.md
-
-commit 8dcfdbd6515695468ec19567315484d72663d560
-Author: Jonathan Kim <71949664+jyongkim@users.noreply.github.com>
-Date:   Tue Mar 16 16:49:45 2021 -0300
-
-    Update README.md
-
-commit 4dba67acc900637410547c32b3596fbaf8c837e2
+commit aebf29b1e9611b94862924e6dcae7d3652035456
 Author: Jonathan Kim <jonathankim86@gmail.com>
 Date:   Thu Mar 11 18:18:32 2021 -0300
 
     README
+    
+    Versión 1.3
+    
+    Update README.md
+    
+    Update README.md
+    
+    Versión 1.4
+    
+    ReadMe 3.0
+    
+    ReadMe 4.0
 
-commit c82d6ab345dd04c3a122c8bc8a0ba0a5b4cd9aed
+commit e30b982e81f87017d04c8e74f77a895d77363e0d
 Author: Jonathan Kim <jonathankim86@gmail.com>
 Date:   Thu Mar 11 18:03:13 2021 -0300
 
     Documentación con Swagger
 
-commit 9ce8e1f13cfb163e200e507da173f15af1c32be2
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Thu Mar 11 15:42:44 2021 -0300
-
-    Versión 1.2
-
-commit 84be67fe343ecf41248627023912e120c37288e4
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Wed Mar 10 16:58:37 2021 -0300
-
-    Versión 1.1
-
-commit a1831d6da196020b537bcd25c86742491a050766
-Author: Jonathan Kim <jonathankim86@gmail.com>
-Date:   Wed Mar 10 14:41:29 2021 -0300
-
-    Versión 1.0
-
-commit ad2fde370b84dd6b1efde7d7737bebe8ff7eb1cc
+commit c9a28485d89b116021ff87b220ac5c799b5d659a
 Author: Jonathan Kim <jonathankim86@gmail.com>
 Date:   Thu Mar 4 16:00:06 2021 -0300
 
     Actualización de usuario
+    
+    Versión 1.0
+    
+    Versión 1.1
+    
+    Versión 1.2
 
 commit f63f0ad32ea14c9be422335bf76892c0d5a0ad08
 Author: Jonathan Kim <jonathankim86@gmail.com>
