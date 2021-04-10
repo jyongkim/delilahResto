@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo del proyecto Delilah Restó</title>
+    <link rel="stylesheet" href="public/styles/style.css">
+    <link rel="stylesheet" href="public/styles/making-of.css">
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="#model">Modelo</a></li>
+            <li><a href="#controller">Controlador</a></li>
+            <li><a href="#routes">Rutas</a></li>
+            <li><a href="https://github.com/jyongkim/delilahResto" target="_blank" title="GitHub">+</a></li>
+        </ul>
+    </nav>
+    <header id="header">
+        <h1>Delilah Restó</h1>
+        <p>Desarrollo API REST</p>
+    </header>
+    <section id="model">
+        <h2>Modelo</h2>
+        <p>En esta sección se manejan las funciones definidas con Express para manipular la estructura de la base de datos. Esto está ligado directamente a las definiciones de los datos en las tablas, además, se manejan clases en formato de funciones para facilitar la asignación de los datos.</p>
+        <ul>
+            <li> Lo primero que se definió fue la conexión con la base de datos. La misma se encuentra en un archivo llamado dbConn.js</li>
+            <li>Una vez definida la conexión, se crearon las clases con los nombres de las tablas (User, Product, Order, Cart) donde se especifican, en formato de objeto, los campos que debe completar el usuario.</li>
+            <li>Luego, se definieron los métodos para la manipulación de datos (CRUD) separando las funciones en base a los parámetros necesitados (id, formData, result) para luego devolver la información resultante mediante callbacks.</li>
+            <li>Por último, se exporta la clase correspondiente con todos sus métodos.</li>
+        </ul>
+        <label class="button" for="verBusqueda">Ver ejemplo...</label>
+                <input type="checkbox" id="verBusqueda">
+                <pre class="mostrar">
+            <i class="orange"> src/middleware/dbconn.js </i>
+                <i class="orange"> /* dependencies */ </i>
+                    const mysql = require(`mysql`)
+                <i class="orange"> /* Environment DB connection */ </i>
+                const dbConn = mysql.createConnection({
+                    host : `localhost`,
+                    user : `root`,
+                    password : ``,
+                    database : `delilah`
+                    } )
+                    dbConn.connect(function(err) {
+                    if (err) throw err;
+                    console.log(`Acceso concedido.`);
+                    } )
+                <i class="orange"> /* connection export */ </i>
+                module.exports = dbConn
+            <i class="orange"> src/model/user.js </i>
+                <i class="orange"> /* Import database connection */ </i>
+                    let dbConn = require(`../middleware/dbConn`);
+                <i class="orange"> /*  User model constructor */ </i>
+                    let User = function(user) {
+                        this.name = user.name
+                        this.user = user.user
+                        this.email = user.email
+                        this.pass = user.pass
+                        this.phone = user.phone
+                        this.address = user.address
+                        this.admin = user.admin ? user.admin : false
+                    }
+                <i class="orange"> /*  MySQL user methods (query, params, callback) */ </i>
+                    User.create = (newUser, result) => {
+                        dbConn.query(`INSERT INTO Users SET ?`, 
+                        newUser, (err, res) => (err) ? result(err, null) : result(null, res)
+                    )   }
+                    User.list = (result) => {
+                        dbConn.query(`SELECT * FROM Users`, 
+                        (err, res)=> (err) ? result(null, err) : result(null, res)
+                    )   }
+                    User.login = (user, pass, result) => {
+                        dbConn.query(`SELECT * FROM users 
+                            WHERE user = ? AND pass = ?`,
+                        [ user, pass ], (err, res) => (err) ? result(err, null) : result(null, res)
+                    )   }
+                    User.find = (id, result) => {
+                        dbConn.query(`SELECT * FROM Users 
+                            WHERE id_user = ? OR user = ?`, 
+                        [ id, id ], (err, res) => (err) ? result(err, null) : result(null, res)
+                    )   }
+                    User.update = (id, user, result) => {
+                        dbConn.query(`UPDATE Users SET ? 
+                            WHERE id_user = ?`, 
+                        [ user, id ], (err, res) => (err) ? result(err, null) : result(null, res)
+                    )   }
+                    User.delete = (id, result) => {
+                        dbConn.query(`DELETE FROM Users 
+                            WHERE id_user = ? OR user = ?`, 
+                        [ id, id ], (err, res) => (err) ? result(null, err) : result(null, res)
+                    )   }
+                <i class="orange"> /* export User model */ </i>
+                    module.exports  = User
+                </pre>
+    </section>
+    <section id="controller">
+        <h2>Controlador</h2>
+        <p> En este apartado se definen las funciones que administran los métodos mencionados anteriormente (CRUD). Estas reciben parámetros a través de la URL y en base a éstos definen las acciones que se llevarán a cabo.</p>
+        <ul>
+            <li>Primero se realizó la importanción de las clases creadas anteriormente para su correcta manipulación.</li>
+            <li>Luego, se definieron nuevas funciones para manipular el modelo. Las mismas reciben nombres similares a los definidos en el modelo y su objetivo es recuperar el resultado de la manipulación de los datos.</li>
+            <li>Por último, se exportaron todos estos métodos para que sean accesibles a través de las rutas.</li>
+        </ul>
+        <label class="button" for="verBusqueda">Ver ejemplo...</label>
+                <input type="checkbox" id="verBusqueda">
+                <pre class="mostrar">
+            <i class="orange"> src/controller/user.js </i>
+                <i class="orange"> /* User model import */ </i>
+                    const User = require(`../model/user`)
+                <i class="orange"> /*  NodeJS user handler methods   */ </i>
+                    exports.create = function(req, res) {
+                        const newUser = new User(req.body);
+                        (req.body.constructor == Object && Object.keys(req.body) == 0) ?
+                            res.status(400).send(   {
+                                error:true,
+                                message:`Todos los campos son obligatorios.`
+                            }   ) : User.create(newUser, (err, user) => err ? res.send(err) : res.json( {
+                                error:false,
+                                message:`Usuario agregado con éxito.`,
+                                data: user
+                            }   )
+                    )   }
+                    exports.list = function(req, res) {
+                        User.list( (err, user) => (err) ? res.send(err) : res.send(user)
+                    )   }
+                    exports.find = function(req, res) {
+                        User.find(req.params.id, (err, user) => (err) ? res.send(err) : res.json(user)
+                    )   }
+                    exports.update = function(req, res) {
+                        (req.body.constructor == Object && Object.keys(req.body).length == 0) ?
+                            res.status(400).send(   {
+                                error: true,
+                                message: `Debes completar todos los campos.`
+                            }   ) : User.update(req.params.id, new User(req.body), (err, user) => (err) ? res.send(err): res.json( {   
+                                message: `Los datos fueron actualizados.`,
+                                user: user   
+                            }  )
+                    )   }
+                    exports.delete = function(req, res) {
+                        User.delete(req.params.id, (err, user) => (err) ? res.send(err) : res.json(   {
+                            error:false, 
+                            message:`El usuario fue eliminado.`,
+                            user: user
+                        }   )
+                    )   }
+                </pre>
+    </section>
+    <section id="routes">
+        <h2>Rutas</h2>
+        <p>Representan las direcciones a las cuales deberá acceder el usuario para poder mostrar o enviar determinada información. Gracias al framework de Express podemos especificar las rutas como strings además del método a utilizar para las consultas HTTP (POST, GET, PUT, DELETE). Las mismas fueron verificadas con Postman.</p>
+        <ul>
+            <li>Primero, se importaron los controladores previamente mencionados.</li>
+            <li>Luego, se defineron los métodos asociados a cada controlador. Por ejemplo: en el caso de User.create corresponde el método POST, en el de User.find corresponde el método GET.</li>
+            <li>Luego, se definieron las direcciones, conjuntamente con los parámetros que debían indicarse en la URL.Por ejemplo: 'users/:id' para acceder al perfil de un usuario determinado.<li>
+            <li>Por último, se exportaron las rutas para que sean utilizadas por el Endpoint principal: 'http://localhost:5000'</li>
+        </ul>
+        <label class="button" for="verBusqueda">Ver ejemplo...</label>
+                <input type="checkbox" id="verBusqueda">
+                <pre class="mostrar">
+            <i class="orange"> src/routes/user.js </i>
+                    <i class="orange"> /* dependencies */ </i>
+                    const express = require(`express`)
+                    const router = express.Router()
+                <i class="orange"> /* autentication & controller */ </i>
+                    const userController = require(`../controller/user`)
+                    const { authToken, adminAuth } = require(`../middleware/auth`)
+                
+                <i class="orange"> /* User routes */ </i>
+                    router.post   ( `/`,     adminAuth,  userController.create  ) // C
+                    router.get    ( `/`,     adminAuth,  userController.list    ) // R
+                    router.get    ( `/:id`,  authToken,  userController.find    ) // R
+                    router.put    ( `/:id`,  authToken,  userController.update  ) // U
+                    router.delete ( `/:id`,  authToken,  userController.delete  ) // D
+                <i class="orange"> /* export user Routes */ </i>
+                    module.exports = router
+            <i class="orange"> index.js </i>
+                <i class="orange"> /* Dependencias */ </i>
+                    const express = require(`express`)
+                    const swaggerJsDoc = require(`swagger-jsdoc`);
+                    const swaggerUi = require(`swagger-ui-express`);
+                <i class="orange"> /* Parametros */ </i>
+                    const delilah = express()
+                    const app = require(`./package.json`)
+                    const port = process.env.PORT || 5000
+                <i class="orange"> /* Importacion Rutas */ </i>
+                    const user = require(`./src/routes/user`)
+                    const product = require(`./src/routes/product`)
+                    const cart = require(`./src/routes/cart`)
+                    const order = require(`./src/routes/order`)
+                    const { login, signup } = require(`./src/middleware/auth`)
+                <i class="orange"> /* Configuracion API, DOC */ </i>
+                    delilah.use(express.urlencoded({ extended: true }))
+                    delilah.use(express.json())
+                    delilah.listen(port, () => { console.log(`El puerto utilizado es: ${port}.`) });
+                <i class="orange"> /* Endpoints */ </i>
+                    delilah.get(`/`, (req, res) => { res.send( {
+                        tittle: app.name,
+                        message: `Bienvenido a ${app.name}, comienza realizando un pedido.`,
+                        autor: app.author,
+                        version: app.version,
+                        documentacion: `http://localhost:5000/api-docs/`
+                    } ) } )
+                    delilah.use(`/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerDocs)); // Ruta Documentación Swagger.
+                    delilah.use(`/signup`, signup) // Registro de usuario.
+                    delilah.use(`/login`, login) // Inicio de sesión.
+                    delilah.use(`/users`, user) // Perfiles de usuario.
+                    delilah.use(`/products`, product) // Venta de productos.
+                    delilah.use(`/cart`, cart) // Carrito de compras.
+                    delilah.use(`/orders`, order) // Órdenes de compra.
+                </pre>
+    </section>
+    <footer id="footer">
+        <address>
+            <strong>&copy; Jonathan Kim | </strong>
+            <a href="mailto:jonathankim86@gmail.com">jonathankim86@gmail.com</a>
+        </address>
+    </footer>
+</body>
+</html>
