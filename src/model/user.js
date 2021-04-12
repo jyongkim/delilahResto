@@ -1,4 +1,5 @@
-let dbConn = require(`../middleware/dbConn`);
+/* Import database connection */
+    let dbConn = require(`../middleware/dbConn`);
 /*  User model constructor */
     let User = function(user) {
         this.name = user.name
@@ -38,4 +39,5 @@ let dbConn = require(`../middleware/dbConn`);
             WHERE id_user = ? OR user = ?`, 
         [ id, id ], (err, res) => (err) ? result(null, err) : result(null, res)
     )   }
-module.exports  = User
+/* export User model */
+    module.exports  = User

@@ -1,4 +1,5 @@
-const User = require(`../model/user`)
+/* User model import */
+    const User = require(`../model/user`)
 /*  NodeJS user handler methods   */
     exports.create = function(req, res) {
         const newUser = new User(req.body);

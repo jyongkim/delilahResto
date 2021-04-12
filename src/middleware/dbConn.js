@@ -1,4 +1,5 @@
-const mysql = require(`mysql`)
+/* dependencies */
+  const mysql = require(`mysql`)
 /* Environment DB connection */
   const dbConn = mysql.createConnection({
       host : `localhost`,
@@ -10,4 +11,5 @@ const mysql = require(`mysql`)
       if (err) throw err;
       console.log(`Acceso concedido.`);
     } )
+/* connection export */
 module.exports = dbConn
